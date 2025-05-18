@@ -59,7 +59,7 @@ export default function FloProPage() {
               />
               <PropertiesSidePanel 
                 selectedNode={selectedNode}
-                className="w-full max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg min-w-[280px]" 
+                className="max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg min-w-[280px]" 
               />
             </main>
           </div>
