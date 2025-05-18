@@ -12,7 +12,7 @@ const LogoMakerHeader: React.FC = () => {
             <ShieldCheck className="h-7 w-7 filter drop-shadow-[0_0_5px_hsl(var(--primary)/0.5)]" />
             <div>
                 <h1 className="text-xl font-bold">
-                    Logo Maker
+                    Lo"LAB"Go
                 </h1>
                 <p className="text-xs text-muted-foreground italic">
                     Part of Flo-Pro
