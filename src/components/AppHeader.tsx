@@ -1,9 +1,10 @@
 
-import React from 'react'; // Changed from type import
+import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Download } from 'lucide-react';
+import { Download, Palette } from 'lucide-react'; // Changed Palette to Download for consistency, Palette for logo maker link
 import FloProLogo from '@/components/FloProLogo';
 import { SidebarTrigger } from '@/components/ui/sidebar';
+import Link from 'next/link';
 
 const AppHeader: React.FC = () => {
   return (
@@ -12,10 +13,18 @@ const AppHeader: React.FC = () => {
         <SidebarTrigger className="md:hidden" /> {/* For mobile sidebar toggle */}
         <FloProLogo />
       </div>
-      <Button variant="outline">
-        <Download className="mr-2 h-4 w-4" />
-        Export
-      </Button>
+      <div className="flex items-center gap-2">
+        <Link href="/logo-maker" passHref>
+          <Button variant="outline">
+            <Palette className="mr-2 h-4 w-4" />
+            Logo Maker
+          </Button>
+        </Link>
+        <Button variant="default"> {/* Changed from outline to default for primary action */}
+          <Download className="mr-2 h-4 w-4" />
+          Export Flowchart
+        </Button>
+      </div>
     </header>
   );
 };
