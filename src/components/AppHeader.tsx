@@ -1,4 +1,5 @@
-import type React from 'react';
+
+import React from 'react'; // Changed from type import
 import { Button } from '@/components/ui/button';
 import { Download } from 'lucide-react';
 import FloProLogo from '@/components/FloProLogo';

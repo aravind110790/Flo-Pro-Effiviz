@@ -1,8 +1,7 @@
 
 'use client'; // Required for useState and event handlers
 
-import type React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react'; // Changed from type import
 import AppHeader from '@/components/AppHeader';
 import AppSidebar from '@/components/AppSidebar';
 import CanvasArea from '@/components/CanvasArea';

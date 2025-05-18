@@ -1,4 +1,5 @@
-import type React from 'react';
+
+import React from 'react'; // Changed from type import
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';

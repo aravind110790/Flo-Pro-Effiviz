@@ -1,7 +1,7 @@
+
 'use client';
 
-import type React from 'react';
-import { useState, useTransition } from 'react';
+import React, { useState, useTransition } from 'react'; // Changed from type import
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';

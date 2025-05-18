@@ -1,4 +1,5 @@
-import type React from 'react';
+
+import React from 'react'; // Changed from type import
 
 const FloProLogo: React.FC = () => {
   return (
