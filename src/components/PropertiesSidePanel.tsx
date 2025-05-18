@@ -39,62 +39,58 @@ const PropertiesSidePanel: React.FC<PropertiesSidePanelProps> = ({ className, se
     <aside className={cn("flex-shrink-0", className)}>
       <ScrollArea className="h-full rounded-lg border bg-card text-card-foreground shadow-sm">
         <div className="p-4 space-y-6">
-          {/* Suggestions Accordion */}
-          <Card>
-            <Accordion type="single" collapsible className="w-full" defaultValue="suggestions">
-              <AccordionItem value="suggestions">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                  <div className="flex items-center">
-                    <Lightbulb className="mr-2 h-5 w-5 text-primary" />
-                    <span className="text-lg font-semibold">Suggestions</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-4">
-                  <p className="text-sm text-muted-foreground">
-                    Quick tips and common flowchart patterns will appear here to help you build effectively.
-                  </p>
-                  <ul className="mt-2 list-disc list-inside text-sm space-y-1">
-                    <li>Start with a 'Terminator' for beginning and end points.</li>
-                    <li>Use 'Process' for actions or operations.</li>
-                    <li>'Decision' symbols should have clear 'Yes/No' or conditional paths.</li>
-                  </ul>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </Card>
+          {/* Suggestions Accordion - No longer wrapped in Card */}
+          <Accordion type="single" collapsible className="w-full" defaultValue="suggestions">
+            <AccordionItem value="suggestions" className="border-b-0">
+              <AccordionTrigger className="px-2 py-3 hover:no-underline rounded-md hover:bg-muted data-[state=open]:bg-muted">
+                <div className="flex items-center">
+                  <Lightbulb className="mr-2 h-5 w-5 text-primary" />
+                  <span className="text-base font-semibold">Suggestions</span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="px-2 pt-2 pb-4">
+                <p className="text-sm text-muted-foreground">
+                  Quick tips and common flowchart patterns will appear here to help you build effectively.
+                </p>
+                <ul className="mt-2 list-disc list-inside text-sm space-y-1">
+                  <li>Start with a 'Terminator' for beginning and end points.</li>
+                  <li>Use 'Process' for actions or operations.</li>
+                  <li>'Decision' symbols should have clear 'Yes/No' or conditional paths.</li>
+                </ul>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
 
-          {/* Templates Accordion */}
-          <Card>
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="templates">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                  <div className="flex items-center">
-                    <LayoutGrid className="mr-2 h-5 w-5 text-primary" />
-                    <span className="text-lg font-semibold">Templates</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-4">
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Select a template to get started quickly:
-                  </p>
-                  <div className="space-y-2">
-                    {templatesList.map((templateName) => (
-                      <Button
-                        key={templateName}
-                        variant="outline"
-                        size="sm"
-                        className="w-full justify-start"
-                        onClick={() => handleTemplateClick(templateName)}
-                      >
-                        {templateName}
-                      </Button>
-                    ))}
-                  </div>
-                   <p className="mt-3 text-xs text-muted-foreground italic">More templates coming soon!</p>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </Card>
+          {/* Templates Accordion - No longer wrapped in Card */}
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="templates" className="border-b-0">
+              <AccordionTrigger className="px-2 py-3 hover:no-underline rounded-md hover:bg-muted data-[state=open]:bg-muted">
+                <div className="flex items-center">
+                  <LayoutGrid className="mr-2 h-5 w-5 text-primary" />
+                  <span className="text-base font-semibold">Templates</span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="px-2 pt-2 pb-4">
+                <p className="text-sm text-muted-foreground mb-2">
+                  Select a template to get started quickly:
+                </p>
+                <div className="space-y-2">
+                  {templatesList.map((templateName) => (
+                    <Button
+                      key={templateName}
+                      variant="outline"
+                      size="sm"
+                      className="w-full justify-start"
+                      onClick={() => handleTemplateClick(templateName)}
+                    >
+                      {templateName}
+                    </Button>
+                  ))}
+                </div>
+                 <p className="mt-3 text-xs text-muted-foreground italic">More templates coming soon!</p>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
 
            <Card>
             <CardHeader>
