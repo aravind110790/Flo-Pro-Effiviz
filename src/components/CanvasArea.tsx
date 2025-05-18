@@ -31,11 +31,11 @@ const CanvasArea: React.FC<CanvasAreaProps> = ({ className, nodes, selectedNodeI
               width={800}
               height={600}
               className="opacity-30 rounded-md max-w-full h-auto"
-              data-ai-hint="flowchart diagram"
+              data-ai-hint="idea inspiration"
               priority={false}
             />
-            <p className="mt-4 text-lg font-medium">Click symbols in the sidebar to add them here.</p>
-            <p className="text-sm">Click an element on the canvas to select it and view its properties.</p>
+            <p className="mt-4 text-lg font-medium">Your canvas awaits! Click a symbol to bring your ideas to life.</p>
+            <p className="text-sm">Let your creativity flow, one shape at a time.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 auto-rows-max">
@@ -44,6 +44,7 @@ const CanvasArea: React.FC<CanvasAreaProps> = ({ className, nodes, selectedNodeI
                 key={node.id}
                 className={cn(
                   "p-3 flex flex-col items-center justify-center text-center h-28 shadow-md bg-card hover:shadow-lg transition-all duration-200 cursor-pointer",
+                  "animate-in fade-in-0 zoom-in-95 duration-300 ease-out", // Added entry animation
                   node.id === selectedNodeId && "ring-2 ring-primary ring-offset-2 ring-offset-background"
                 )}
                 onClick={(e) => {
