@@ -14,7 +14,7 @@ interface CanvasAreaProps {
 
 const CanvasArea: React.FC<CanvasAreaProps> = ({ className, nodes, selectedNodeId, onNodeSelect }) => {
   return (
-    <Card 
+    <Card
       className={cn("flex-grow shadow-lg overflow-auto", className)}
       onClick={(e) => {
         // If click is on the card itself and not on a node, deselect
@@ -22,18 +22,17 @@ const CanvasArea: React.FC<CanvasAreaProps> = ({ className, nodes, selectedNodeI
           onNodeSelect(null);
         }
       }}
-    >
-      <CardContent className="p-4 h-full bg-background relative">
+    ><CardContent className="p-4 h-full bg-background relative">
         {nodes.length === 0 ? (
           <div className="text-center text-muted-foreground p-8 absolute inset-0 flex flex-col items-center justify-center">
-            <Image 
-              src="https://placehold.co/800x600.png" 
-              alt="Flowchart canvas placeholder" 
-              width={800} 
-              height={600} 
+            <Image
+              src="https://placehold.co/800x600.png"
+              alt="Flowchart canvas placeholder"
+              width={800}
+              height={600}
               className="opacity-30 rounded-md max-w-full h-auto"
               data-ai-hint="flowchart diagram"
-              priority={false} 
+              priority={false}
             />
             <p className="mt-4 text-lg font-medium">Click symbols in the sidebar to add them here.</p>
             <p className="text-sm">Click an element on the canvas to select it and view its properties.</p>
@@ -41,8 +40,8 @@ const CanvasArea: React.FC<CanvasAreaProps> = ({ className, nodes, selectedNodeI
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 auto-rows-max">
             {nodes.map((node) => (
-              <Card 
-                key={node.id} 
+              <Card
+                key={node.id}
                 className={cn(
                   "p-3 flex flex-col items-center justify-center text-center h-28 shadow-md bg-card hover:shadow-lg transition-all duration-200 cursor-pointer",
                   node.id === selectedNodeId && "ring-2 ring-primary ring-offset-2 ring-offset-background"
@@ -60,8 +59,7 @@ const CanvasArea: React.FC<CanvasAreaProps> = ({ className, nodes, selectedNodeI
             ))}
           </div>
         )}
-      </CardContent>
-    </Card>
+      </CardContent></Card>
   );
 };
 
