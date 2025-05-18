@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Ŧl๏-קг๏: EffiViz',
-  description: 'Craft flowcharts with ease using Ŧl๏-קг๏: EffiViz. Features drag-and-drop, symbol library, smart suggestions, and export functionality.',
+  title: 'Ŧl๏-קг๏: ₑffᵢᵥᵢz',
+  description: 'Craft flowcharts with ease using Ŧl๏-קг๏: ₑffᵢᵥᵢz. Features drag-and-drop, symbol library, smart suggestions, and export functionality.',
 };
 
 export default function RootLayout({

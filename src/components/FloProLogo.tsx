@@ -7,7 +7,7 @@ const FloProLogo: React.FC = () => {
         Ŧl๏-קг๏
       </h1>
       <p className="text-xs text-muted-foreground italic">
-        EffiViz
+        ₑffᵢᵥᵢz
       </p>
     </div>
   );
