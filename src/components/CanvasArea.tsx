@@ -29,13 +29,13 @@ const CanvasArea: React.FC<CanvasAreaProps> = ({ className, nodes }) => {
             <p className="text-sm">Use the properties panel to customize them.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 auto-rows-max">
             {nodes.map((node) => (
-              <Card key={node.id} className="p-3 flex flex-col items-center justify-center text-center h-28 shadow-md bg-card">
+              <Card key={node.id} className="p-3 flex flex-col items-center justify-center text-center h-28 shadow-md bg-card hover:shadow-lg transition-shadow duration-200">
                 <div className="text-primary w-10 h-10 mb-1 flex items-center justify-center">
-                  {React.cloneElement(node.icon as React.ReactElement, { size: 32 })}
+                  {React.isValidElement(node.icon) ? React.cloneElement(node.icon, { size: 32 }) : null}
                 </div>
-                <p className="text-xs font-medium text-card-foreground truncate w-full">{node.name}</p>
+                <p className="text-xs font-medium text-card-foreground truncate w-full px-1">{node.name}</p>
               </Card>
             ))}
           </div>
