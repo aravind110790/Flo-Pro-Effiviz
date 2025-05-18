@@ -26,6 +26,10 @@ const templatesList = [
   "Basic Process Flow",
   "Login System Flow",
   "User Registration Flow",
+  "E-commerce Checkout Process",
+  "Software Bug Tracking Workflow",
+  "Decision Tree - Simple",
+  "Project Approval Process",
 ];
 
 const PropertiesSidePanel: React.FC<PropertiesSidePanelProps> = ({ className, selectedNode, onNodeNameChange }) => {
@@ -62,7 +66,7 @@ const PropertiesSidePanel: React.FC<PropertiesSidePanelProps> = ({ className, se
           </Accordion>
 
           {/* Templates Accordion - No longer wrapped in Card */}
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full" defaultValue="templates">
             <AccordionItem value="templates" className="border-b-0">
               <AccordionTrigger className="px-2 py-3 hover:no-underline rounded-md hover:bg-muted data-[state=open]:bg-muted">
                 <div className="flex items-center">
