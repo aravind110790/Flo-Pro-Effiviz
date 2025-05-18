@@ -112,13 +112,13 @@ const SmartSuggestion: React.FC = () => {
       </CardContent>
       <CardFooter className="flex flex-col items-start space-y-4">
         {error && (
-          <Alert variant="destructive" className="w-full">
+          <Alert variant="destructive" className="w-full animate-in fade-in-0 slide-in-from-bottom-3 duration-500">
             <AlertTitle>Error</AlertTitle>
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
         {suggestion && (
-          <Alert variant="default" className="w-full">
+          <Alert variant="default" className="w-full animate-in fade-in-0 slide-in-from-bottom-3 duration-500">
              <Wand2 className="h-4 w-4" />
             <AlertTitle>Suggestion:</AlertTitle>
             <AlertDescription>
