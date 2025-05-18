@@ -17,7 +17,7 @@ const AppHeader: React.FC = () => {
         <Link href="/logo-maker" passHref>
           <Button variant="outline">
             <Palette className="mr-2 h-4 w-4" />
-            Lo"LAB"Go
+            🄻🄾|ᒪᗩᗷ|‌🄶🄾
           </Button>
         </Link>
         <Button variant="default"> {/* Changed from outline to default for primary action */}
