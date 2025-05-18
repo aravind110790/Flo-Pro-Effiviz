@@ -1,5 +1,5 @@
 
-import React from 'react'; // Changed from type import
+import React from 'react';
 
 const FloProLogo: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const FloProLogo: React.FC = () => {
         Flo-Pro
       </h1>
       <p className="text-xs text-muted-foreground italic">
-        Crafted 4ur Convenience
+        EffiViz
       </p>
     </div>
   );

@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Flo-Pro: Crafted 4ur Convenience',
-  description: 'Craft flowcharts with ease using Flo-Pro: Crafted 4ur Convenience. Features drag-and-drop, symbol library, smart suggestions, and export functionality.',
+  title: 'Flo-Pro: EffiViz',
+  description: 'Craft flowcharts with ease using Flo-Pro: EffiViz. Features drag-and-drop, symbol library, smart suggestions, and export functionality.',
 };
 
 export default function RootLayout({
