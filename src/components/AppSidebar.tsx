@@ -1,3 +1,4 @@
+
 import type React from 'react';
 import {
   Sidebar,
@@ -23,7 +24,11 @@ const symbols = [
   { name: 'Document', icon: <FileText size={24} strokeWidth={1.5} /> },
 ];
 
-const AppSidebar: React.FC = () => {
+interface AppSidebarProps {
+  onSymbolAdd: (symbol: { name: string; icon: React.ReactNode }) => void;
+}
+
+const AppSidebar: React.FC<AppSidebarProps> = ({ onSymbolAdd }) => {
   return (
     <Sidebar side="left" collapsible="icon" className="border-r">
       <SidebarHeader className="p-4 hidden md:block">
@@ -34,7 +39,13 @@ const AppSidebar: React.FC = () => {
           <SidebarGroupLabel className="text-sidebar-foreground/70">Shapes</SidebarGroupLabel>
           <div className="grid grid-cols-2 gap-2 group-data-[collapsible=icon]:grid-cols-1">
             {symbols.map((symbol) => (
-              <SymbolItem key={symbol.name} name={symbol.name} icon={symbol.icon} className="group-data-[collapsible=icon]:h-12 group-data-[collapsible=icon]:w-12 group-data-[collapsible=icon]:p-1 group-data-[collapsible=icon]:[&_p]:hidden"/>
+              <SymbolItem 
+                key={symbol.name} 
+                name={symbol.name} 
+                icon={symbol.icon} 
+                onSymbolAdd={() => onSymbolAdd(symbol)}
+                className="group-data-[collapsible=icon]:h-12 group-data-[collapsible=icon]:w-12 group-data-[collapsible=icon]:p-1 group-data-[collapsible=icon]:[&_p]:hidden"
+              />
             ))}
           </div>
         </SidebarGroup>
