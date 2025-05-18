@@ -11,12 +11,16 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import type { CanvasNode } from '@/app/page'; // Import CanvasNode
 
 interface PropertiesSidePanelProps {
   className?: string;
+  selectedNode?: CanvasNode | null; // Accept selectedNode as a prop
 }
 
-const PropertiesSidePanel: React.FC<PropertiesSidePanelProps> = ({ className }) => {
+const PropertiesSidePanel: React.FC<PropertiesSidePanelProps> = ({ className, selectedNode }) => {
   return (
     <aside className={cn("flex-shrink-0", className)}>
       <ScrollArea className="h-full rounded-lg border bg-card text-card-foreground shadow-sm">
@@ -69,6 +73,39 @@ const PropertiesSidePanel: React.FC<PropertiesSidePanelProps> = ({ className }) 
               </AccordionItem>
             </Accordion>
           </Card>
+          
+          {/* Element Properties Placeholder */}
+           <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Brush className="mr-2 h-5 w-5 text-primary" />
+                Element Properties
+              </CardTitle>
+              <CardDescription>Adjust selected element properties.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              {selectedNode ? (
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="nodeName" className="text-sm font-medium">Name</Label>
+                    <Input id="nodeName" value={selectedNode.name} readOnly className="mt-1"/>
+                  </div>
+                  <div>
+                    <Label htmlFor="nodeId" className="text-sm font-medium">ID</Label>
+                    <Input id="nodeId" value={selectedNode.id} readOnly className="mt-1"/>
+                  </div>
+                  <div>
+                    <Label htmlFor="nodeType" className="text-sm font-medium">Type</Label>
+                    {/* The 'name' property often represents the type for flowchart symbols */}
+                    <Input id="nodeType" value={selectedNode.name} readOnly className="mt-1"/> 
+                  </div>
+                  {/* Future properties like text content, color, size can be added here */}
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground">Select an element on the canvas to see its properties here.</p>
+              )}
+            </CardContent>
+          </Card>
 
           {/* Color Palette Section Placeholder */}
           <Card>
@@ -83,44 +120,32 @@ const PropertiesSidePanel: React.FC<PropertiesSidePanelProps> = ({ className }) 
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-sm">Primary Color</span>
-                  <div className="w-7 h-7 rounded-md border bg-blue-500 cursor-pointer hover:opacity-80 shadow-inner" title="Select primary color (placeholder)"></div>
+                  <div className="w-7 h-7 rounded-md border bg-[hsl(var(--primary))] cursor-pointer hover:opacity-80 shadow-inner" title="Primary color (theme)"></div>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm">Accent Color</span>
-                  <div className="w-7 h-7 rounded-md border bg-purple-500 cursor-pointer hover:opacity-80 shadow-inner" title="Select accent color (placeholder)"></div>
+                  <div className="w-7 h-7 rounded-md border bg-[hsl(var(--accent))] cursor-pointer hover:opacity-80 shadow-inner" title="Accent color (theme)"></div>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm">Background Color</span>
-                  <div className="w-7 h-7 rounded-md border bg-slate-200 cursor-pointer hover:opacity-80 shadow-inner" title="Select background color (placeholder)"></div>
+                  <span className="text-sm">Background</span>
+                  <div className="w-7 h-7 rounded-md border bg-background cursor-pointer hover:opacity-80 shadow-inner" title="Background color (theme)"></div>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm">Text Color</span>
-                  <div className="w-7 h-7 rounded-md border bg-slate-700 cursor-pointer hover:opacity-80 shadow-inner" title="Select text color (placeholder)"></div>
+                  <span className="text-sm">Foreground</span>
+                  <div className="w-7 h-7 rounded-md border bg-[hsl(var(--foreground))] cursor-pointer hover:opacity-80 shadow-inner" title="Foreground/Text color (theme)"></div>
+                </div>
+                 <div className="flex items-center justify-between">
+                  <span className="text-sm">Card Color</span>
+                  <div className="w-7 h-7 rounded-md border bg-[hsl(var(--card))] cursor-pointer hover:opacity-80 shadow-inner" title="Card color (theme)"></div>
                 </div>
                  <div className="flex items-center justify-between">
                   <span className="text-sm">Border Color</span>
-                  <div className="w-7 h-7 rounded-md border bg-slate-400 cursor-pointer hover:opacity-80 shadow-inner" title="Select border color (placeholder)"></div>
+                  <div className="w-7 h-7 rounded-md border bg-[hsl(var(--border))] cursor-pointer hover:opacity-80 shadow-inner" title="Border color (theme)"></div>
                 </div>
               </div>
-              <p className="mt-4 text-xs text-muted-foreground italic">Full color customization and theme adjustments coming soon!</p>
+              <p className="mt-4 text-xs text-muted-foreground italic">Theme color adjustments will be available soon.</p>
             </CardContent>
           </Card>
-
-          {/* Element Properties Placeholder */}
-           <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Brush className="mr-2 h-5 w-5 text-primary" />
-                Element Properties
-              </CardTitle>
-              <CardDescription>Adjust selected element properties.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">Select an element on the canvas to see its properties here.</p>
-              {/* Placeholder for properties like text, size, etc. */}
-            </CardContent>
-          </Card>
-
 
           {/* Smart Suggestion Section */}
           <SmartSuggestion />

@@ -3,17 +3,27 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import type { CanvasNode } from '@/app/page'; // Import the CanvasNode type
+import type { CanvasNode } from '@/app/page';
 
 interface CanvasAreaProps {
   className?: string;
-  nodes: CanvasNode[]; // Prop to receive nodes to render
+  nodes: CanvasNode[];
+  selectedNodeId: string | null;
+  onNodeSelect: (nodeId: string | null) => void;
 }
 
-const CanvasArea: React.FC<CanvasAreaProps> = ({ className, nodes }) => {
+const CanvasArea: React.FC<CanvasAreaProps> = ({ className, nodes, selectedNodeId, onNodeSelect }) => {
   return (
-    <Card className={cn("flex-grow shadow-lg overflow-auto", className)}> {/* Changed overflow to auto */}
-      <CardContent className="p-4 h-full bg-background relative"> {/* Added p-4 and relative positioning context */}
+    <Card 
+      className={cn("flex-grow shadow-lg overflow-auto", className)}
+      onClick={(e) => {
+        // If click is on the card itself and not on a node, deselect
+        if (e.target === e.currentTarget) {
+          onNodeSelect(null);
+        }
+      }}
+    >
+      <CardContent className="p-4 h-full bg-background relative">
         {nodes.length === 0 ? (
           <div className="text-center text-muted-foreground p-8 absolute inset-0 flex flex-col items-center justify-center">
             <Image 
@@ -26,14 +36,24 @@ const CanvasArea: React.FC<CanvasAreaProps> = ({ className, nodes }) => {
               priority={false} 
             />
             <p className="mt-4 text-lg font-medium">Click symbols in the sidebar to add them here.</p>
-            <p className="text-sm">Use the properties panel to customize them.</p>
+            <p className="text-sm">Click an element on the canvas to select it and view its properties.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 auto-rows-max">
             {nodes.map((node) => (
-              <Card key={node.id} className="p-3 flex flex-col items-center justify-center text-center h-28 shadow-md bg-card hover:shadow-lg transition-shadow duration-200">
+              <Card 
+                key={node.id} 
+                className={cn(
+                  "p-3 flex flex-col items-center justify-center text-center h-28 shadow-md bg-card hover:shadow-lg transition-all duration-200 cursor-pointer",
+                  node.id === selectedNodeId && "ring-2 ring-primary ring-offset-2 ring-offset-background"
+                )}
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent click from bubbling to parent Card
+                  onNodeSelect(node.id);
+                }}
+              >
                 <div className="text-primary w-10 h-10 mb-1 flex items-center justify-center">
-                  {React.isValidElement(node.icon) ? React.cloneElement(node.icon, { size: 32 }) : null}
+                  {React.isValidElement(node.icon) ? React.cloneElement(node.icon as React.ReactElement, { size: 32 }) : null}
                 </div>
                 <p className="text-xs font-medium text-card-foreground truncate w-full px-1">{node.name}</p>
               </Card>
