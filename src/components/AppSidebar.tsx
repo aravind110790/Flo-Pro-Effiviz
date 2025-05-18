@@ -11,17 +11,37 @@ import {
   SidebarMenuItem
 } from '@/components/ui/sidebar';
 import SymbolItem from '@/components/SymbolItem';
-import FloProLogo from '@/components/FloProLogo';
-import { RectangleHorizontal, Diamond, Circle, Database, FileText, Settings, LifeBuoy, ALargeSmall } from 'lucide-react';
+import { RectangleHorizontal, Diamond, Circle, Database, FileText, Settings, LifeBuoy, LibraryBig, Keyboard, Monitor, Link2 } from 'lucide-react';
 import { Button } from './ui/button';
+
+// Custom Parallelogram Icon for Data (I/O)
+const ParallelogramIcon = ({ size = 24, strokeWidth = 1.5, className = "" }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={strokeWidth}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M21.33 6.25H6.67L3 17.75H17.66L21.33 6.25Z" />
+  </svg>
+);
 
 const symbols = [
   { name: 'Terminator', icon: <Circle size={24} strokeWidth={1.5} /> },
   { name: 'Process', icon: <RectangleHorizontal size={24} strokeWidth={1.5} /> },
   { name: 'Decision', icon: <Diamond size={24} strokeWidth={1.5} /> },
-  { name: 'Data', icon: <ALargeSmall size={24} strokeWidth={1.5} /> }, // Placeholder for Parallelogram
+  { name: 'Data (I/O)', icon: <ParallelogramIcon size={24} strokeWidth={1.5} /> },
   { name: 'Database', icon: <Database size={24} strokeWidth={1.5} /> },
   { name: 'Document', icon: <FileText size={24} strokeWidth={1.5} /> },
+  { name: 'Subroutine', icon: <LibraryBig size={24} strokeWidth={1.5} /> },
+  { name: 'Manual Input', icon: <Keyboard size={24} strokeWidth={1.5} /> },
+  { name: 'Display', icon: <Monitor size={24} strokeWidth={1.5} /> },
+  { name: 'Connector', icon: <Link2 size={24} strokeWidth={1.5} /> },
 ];
 
 interface AppSidebarProps {
