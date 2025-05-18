@@ -22,7 +22,13 @@ const CanvasArea: React.FC<CanvasAreaProps> = ({ className, nodes, selectedNodeI
           onNodeSelect(null);
         }
       }}
-    ><CardContent className="p-4 h-full bg-background relative">
+    ><CardContent 
+        className="p-4 h-full relative bg-card" // Changed bg-background to bg-card
+        style={{
+          backgroundImage: 'radial-gradient(hsl(var(--border)) 0.5px, transparent 0.5px)',
+          backgroundSize: '15px 15px',
+        }}
+      >
         {nodes.length === 0 ? (
           <div className="text-center text-muted-foreground p-8 absolute inset-0 flex flex-col items-center justify-center">
             <Image
@@ -30,8 +36,8 @@ const CanvasArea: React.FC<CanvasAreaProps> = ({ className, nodes, selectedNodeI
               alt="Flowchart canvas placeholder"
               width={800}
               height={600}
-              className="opacity-30 rounded-md max-w-full h-auto"
-              data-ai-hint="idea inspiration"
+              className="opacity-50 rounded-md max-w-full h-auto" // Increased opacity slightly
+              data-ai-hint="diagramming ideas" // Updated hint
               priority={false}
             />
             <p className="mt-4 text-lg font-medium">Your canvas awaits! Click a symbol to bring your ideas to life.</p>
@@ -44,11 +50,11 @@ const CanvasArea: React.FC<CanvasAreaProps> = ({ className, nodes, selectedNodeI
                 key={node.id}
                 className={cn(
                   "p-3 flex flex-col items-center justify-center text-center h-28 shadow-md bg-card hover:shadow-lg transition-all duration-200 cursor-pointer",
-                  "animate-in fade-in-0 zoom-in-95 duration-300 ease-out", // Added entry animation
+                  "animate-in fade-in-0 zoom-in-95 duration-300 ease-out",
                   node.id === selectedNodeId && "ring-2 ring-primary ring-offset-2 ring-offset-background"
                 )}
                 onClick={(e) => {
-                  e.stopPropagation(); // Prevent click from bubbling to parent Card
+                  e.stopPropagation(); 
                   onNodeSelect(node.id);
                 }}
               >
