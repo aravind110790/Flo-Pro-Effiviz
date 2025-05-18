@@ -8,7 +8,7 @@ body {
 
 @layer base {
   :root {
-    --background: 207 90% 94.1%; /* #E3F2FD - Very light blue */
+    --background: linear-gradient(135deg, hsl(207, 90%, 94.1%), hsl(210, 90%, 97%)); /* #E3F2FD to lighter blue */
     --foreground: 215 25% 17%; /* #212934 - Dark slate blue for text */
 
     --card: 0 0% 100%; /* White */
@@ -57,7 +57,7 @@ body {
   }
 
   .dark {
-    --background: 213 27% 13%; /* #1A222C - Dark Blue */
+    --background: linear-gradient(135deg, hsl(213, 27%, 13%), hsl(220, 30%, 10%)); /* Dark Blue to deeper dark blue/purple */
     --foreground: 212 25% 85%; /* #D0D8E1 - Light Gray/Blue */
 
     --card: 214 27% 17%; /* #202A38 - Slightly lighter than bg */
