@@ -13,14 +13,28 @@ import {
 } from "@/components/ui/accordion";
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import type { CanvasNode } from '@/app/page'; // Import CanvasNode
 
 interface PropertiesSidePanelProps {
   className?: string;
-  selectedNode?: CanvasNode | null; // Accept selectedNode as a prop
+  selectedNode?: CanvasNode | null;
+  onNodeNameChange: (nodeId: string, newName: string) => void;
 }
 
-const PropertiesSidePanel: React.FC<PropertiesSidePanelProps> = ({ className, selectedNode }) => {
+const templatesList = [
+  "Basic Process Flow",
+  "Login System Flow",
+  "User Registration Flow",
+];
+
+const PropertiesSidePanel: React.FC<PropertiesSidePanelProps> = ({ className, selectedNode, onNodeNameChange }) => {
+  const handleTemplateClick = (templateName: string) => {
+    console.log("Template clicked:", templateName);
+    // Placeholder for actual template loading logic
+    alert(`Template "${templateName}" clicked. Functionality to load this template will be added soon!`);
+  };
+
   return (
     <aside className={cn("flex-shrink-0", className)}>
       <ScrollArea className="h-full rounded-lg border bg-card text-card-foreground shadow-sm">
@@ -60,21 +74,28 @@ const PropertiesSidePanel: React.FC<PropertiesSidePanelProps> = ({ className, se
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-4">
-                  <p className="text-sm text-muted-foreground">
-                    Pre-built flowchart templates for common scenarios will be available here soon.
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Select a template to get started quickly:
                   </p>
-                   <ul className="mt-2 list-disc list-inside text-sm space-y-1">
-                    <li>Basic Process Flow</li>
-                    <li>Login System Flow</li>
-                    <li>User Registration Flow</li>
-                  </ul>
+                  <div className="space-y-2">
+                    {templatesList.map((templateName) => (
+                      <Button
+                        key={templateName}
+                        variant="outline"
+                        size="sm"
+                        className="w-full justify-start"
+                        onClick={() => handleTemplateClick(templateName)}
+                      >
+                        {templateName}
+                      </Button>
+                    ))}
+                  </div>
                    <p className="mt-3 text-xs text-muted-foreground italic">More templates coming soon!</p>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
           </Card>
-          
-          {/* Element Properties Placeholder */}
+
            <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
@@ -88,7 +109,12 @@ const PropertiesSidePanel: React.FC<PropertiesSidePanelProps> = ({ className, se
                 <div className="space-y-4">
                   <div>
                     <Label htmlFor="nodeName" className="text-sm font-medium">Name</Label>
-                    <Input id="nodeName" value={selectedNode.name} readOnly className="mt-1"/>
+                    <Input
+                      id="nodeName"
+                      value={selectedNode.name}
+                      onChange={(e) => onNodeNameChange(selectedNode.id, e.target.value)}
+                      className="mt-1"
+                    />
                   </div>
                   <div>
                     <Label htmlFor="nodeId" className="text-sm font-medium">ID</Label>
@@ -97,7 +123,7 @@ const PropertiesSidePanel: React.FC<PropertiesSidePanelProps> = ({ className, se
                   <div>
                     <Label htmlFor="nodeType" className="text-sm font-medium">Type</Label>
                     {/* The 'name' property often represents the type for flowchart symbols */}
-                    <Input id="nodeType" value={selectedNode.name} readOnly className="mt-1"/> 
+                    <Input id="nodeType" value={selectedNode.name} readOnly className="mt-1"/>
                   </div>
                   {/* Future properties like text content, color, size can be added here */}
                 </div>

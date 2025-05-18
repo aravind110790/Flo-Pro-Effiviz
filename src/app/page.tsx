@@ -14,7 +14,7 @@ export interface CanvasNode {
   name: string; // This often serves as the type initially, e.g., "Process", "Decision"
   icon: React.ReactNode;
   // x and y can be used for positioning later, or for layout order
-  x: number; 
+  x: number;
   y: number;
   // Potentially add more properties here like textContent, color, etc.
 }
@@ -41,6 +41,14 @@ export default function FloProPage() {
     setSelectedNodeId(nodeId);
   };
 
+  const handleNodeNameChange = (nodeId: string, newName: string) => {
+    setCanvasNodes((prevNodes) =>
+      prevNodes.map((node) =>
+        node.id === nodeId ? { ...node, name: newName } : node
+      )
+    );
+  };
+
   const selectedNode = canvasNodes.find(node => node.id === selectedNodeId) || null;
 
   return (
@@ -51,15 +59,16 @@ export default function FloProPage() {
           <div className="flex flex-col h-screen overflow-hidden">
             <AppHeader />
             <main className="flex-1 flex overflow-hidden p-4 md:p-6 gap-4 md:gap-6">
-              <CanvasArea 
-                nodes={canvasNodes} 
+              <CanvasArea
+                nodes={canvasNodes}
                 selectedNodeId={selectedNodeId}
                 onNodeSelect={handleNodeSelect}
-                className="flex-grow min-w-0" 
+                className="flex-grow min-w-0"
               />
-              <PropertiesSidePanel 
+              <PropertiesSidePanel
                 selectedNode={selectedNode}
-                className="max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg min-w-[280px]" 
+                onNodeNameChange={handleNodeNameChange}
+                className="max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg min-w-[280px]"
               />
             </main>
           </div>
