@@ -1,4 +1,6 @@
 
+'use client';
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Download, ShieldCheck } from 'lucide-react'; // Using ShieldCheck as a placeholder for logo icon
